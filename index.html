@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Packers World 💚</title>
+
+<style>
+body {
+    margin:0;
+    font-family: Arial;
+    background:#203731;
+    color:white;
+    text-align:center;
+}
+
+/* Header */
+header {
+    background:#FFB612;
+    padding:20px;
+    font-size:24px;
+    font-weight:bold;
+    color:#203731;
+}
+
+/* Section */
+section {
+    padding:20px;
+}
+
+/* Buttons */
+.button {
+    display:inline-block;
+    margin:10px;
+    padding:12px 20px;
+    background:#FFB612;
+    color:#203731;
+    border-radius:10px;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+/* Video */
+iframe {
+    width:95%;
+    height:220px;
+    border-radius:12px;
+}
+
+/* Facts */
+.fact {
+    background:#2d4f47;
+    margin:10px;
+    padding:15px;
+    border-radius:10px;
+}
+
+/* Cheese animation */
+.cheese {
+    position:fixed;
+    top:-50px;
+    font-size:25px;
+    animation:fall linear infinite;
+}
+
+@keyframes fall {
+    to { transform: translateY(110vh); }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+💚 My Packers App 🧀
+</header>
+
+<section>
+<h2>🏟️ Watch Live</h2>
+<a class="button" href="https://www.nfl.com/ways-to-watch/" target="_blank">
+Watch Game
+</a>
+</section>
+
+<section>
+<h2>📺 Highlights</h2>
+<iframe src="https://www.youtube.com/embed/7p3Z1b3ZxOQ" allow="autoplay"></iframe>
+</section>
+
+<section>
+<h2>🏆 Packers Facts</h2>
+
+<div class="fact">Founded in 1919 🏈</div>
+<div class="fact">Play at Lambeau Field 🏟️</div>
+<div class="fact">Won the first Super Bowl 🏆</div>
+<div class="fact">13 championships (most ever)</div>
+<div class="fact">Fans = Cheeseheads 🧀</div>
+<div class="fact">Publicly owned team 👥</div>
+<div class="fact">Legendary coach Vince Lombardi 👑</div>
+<div class="fact">Favre & Rodgers legends 🏈</div>
+<div class="fact">Frozen Tundra ❄️</div>
+<div class="fact">Small town, BIG legacy 💚</div>
+
+</section>
+
+<section>
+<h2>💌 Message</h2>
+<p>
+To my daughter 💚  
+Your love for the Packers is something special.  
+Every game, every cheer — I see your passion and it makes me proud.  
+This is your world 🧀🏈
+</p>
+</section>
+
+<script>
+function createCheese() {
+    const cheese = document.createElement("div");
+    cheese.classList.add("cheese");
+    cheese.innerHTML = "🧀";
+
+    cheese.style.left = Math.random() * 100 + "vw";
+    cheese.style.animationDuration = (Math.random()*3+2)+"s";
+
+    document.body.appendChild(cheese);
+
+    setTimeout(() => cheese.remove(), 5000);
+}
+
+setInterval(createCheese, 300);
+</script>
+
+</body>
+</html>
