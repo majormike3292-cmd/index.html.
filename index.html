@@ -3,238 +3,1004 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Jordan’s Packers World 💚</title>
+<title>Jordan's Packers World 💚</title>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Bebas+Neue&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 <style>
-/* Lambeau Stadium background */
-body {margin:0;font-family:Arial;color:white;overflow-x:hidden;position:relative;background: linear-gradient(to bottom, #203731 0%, #FFB612 100%);}
-#lambeauBackground {position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;background:url('https://upload.wikimedia.org/wikipedia/commons/7/7c/Lambeau_Field_panorama_2015.jpg') no-repeat center center;background-size:cover;filter:brightness(0.4);animation: stadiumLights 5s infinite alternate;}
-@keyframes stadiumLights {0% {filter: brightness(0.35);}50% {filter: brightness(0.45);}100% {filter: brightness(0.4);}}
+:root {
+  --green: #203731;
+  --gold: #FFB612;
+  --dark: #0f1f1a;
+  --card: #1e3d35;
+  --card2: #2a4f45;
+  --glow: 0 0 18px #FFB612aa;
+}
 
-/* Splash */
-#splash{position:fixed;width:100%;height:100%;background:#203731;display:flex;align-items:center;justify-content:center;font-size:30px;z-index:999;animation: fadeOut 2s forwards;animation-delay:2s;}
-@keyframes fadeOut{to{opacity:0;visibility:hidden;}}
+* { box-sizing: border-box; }
 
-/* Header */
-header{background:#FFB612;padding:20px;font-size:26px;font-weight:bold;color:#203731;}
-.name{font-size:28px;margin-top:15px;animation:glow 2s infinite alternate;}
-@keyframes glow{from{text-shadow:0 0 5px #fff;}to{text-shadow:0 0 20px #FFB612;}}
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  color: white;
+  overflow-x: hidden;
+  background: var(--dark);
+}
 
-/* Buttons */
-.button{display:inline-block;margin:10px;padding:14px 22px;background:#FFB612;color:#203731;border-radius:10px;text-decoration:none;font-weight:bold;cursor:pointer;}
+/* ── LAMBEAU BACKGROUND ── */
+#lambeauBackground {
+  position: fixed; top:0; left:0; width:100%; height:100%; z-index:-1;
+  background: url('https://upload.wikimedia.org/wikipedia/commons/7/7c/Lambeau_Field_panorama_2015.jpg') no-repeat center center;
+  background-size: cover;
+  filter: brightness(0.25);
+  animation: stadiumLights 6s infinite alternate;
+}
+@keyframes stadiumLights {
+  0%   { filter: brightness(0.22); }
+  50%  { filter: brightness(0.28); }
+  100% { filter: brightness(0.24); }
+}
 
-/* Iframes */
-iframe{width:95%;height:220px;border-radius:12px;}
+/* ── SPLASH ── */
+#splash {
+  position: fixed; width:100%; height:100%;
+  background: var(--dark);
+  display: flex; flex-direction:column; align-items:center; justify-content:center;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 46px; letter-spacing: 4px;
+  z-index: 9999;
+  animation: fadeOut 2.5s forwards;
+  animation-delay: 2s;
+}
+#splash span { font-size: 22px; font-family: 'Inter', sans-serif; letter-spacing: 2px; margin-top: 10px; color: var(--gold); }
+@keyframes fadeOut { to { opacity:0; visibility:hidden; pointer-events:none; } }
 
-/* Facts, schedule, player cards */
-.fact,.schedule,.player-card,.fanQuote,.game-mode,#surprise,#birthdaySurprise{background:#2d4f47;margin:10px;padding:15px;border-radius:10px;color:white;}
-.player-card{display:inline-block;width:140px;vertical-align:top;}
-.player-card img{width:120px;border-radius:10px;}
+/* ── HEADER ── */
+header {
+  background: linear-gradient(135deg, var(--green) 0%, #2e5c4e 100%);
+  padding: 24px 20px 18px;
+  text-align: center;
+  border-bottom: 3px solid var(--gold);
+  position: relative;
+}
+header h1 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 42px;
+  letter-spacing: 4px;
+  color: var(--gold);
+  margin: 0;
+  text-shadow: var(--glow);
+}
+.tagline {
+  font-size: 14px;
+  letter-spacing: 3px;
+  color: #aed8c8;
+  margin-top: 6px;
+  font-weight: 300;
+  text-transform: uppercase;
+  animation: glow 2s infinite alternate;
+}
+@keyframes glow { from { text-shadow: 0 0 4px #fff2; } to { text-shadow: 0 0 16px var(--gold); } }
 
-/* Floating cheese & hats */
-.cheese,.cheesehat,.football,.confetti{position:fixed;top:-50px;font-size:25px;animation:fall linear infinite;}
-@keyframes fall{to{transform:translateY(110vh);}}
+/* ── NAV ── */
+nav {
+  display: flex; flex-wrap: wrap; gap: 8px; justify-content: center;
+  padding: 12px; background: #0d1c17; border-bottom: 1px solid #2a4f45;
+  position: sticky; top: 0; z-index: 100;
+}
+nav a {
+  color: var(--gold); text-decoration: none; font-size: 12px;
+  font-weight: 600; letter-spacing: 1px; text-transform: uppercase;
+  padding: 6px 12px; border-radius: 6px; border: 1px solid #2a4f45;
+  transition: all 0.2s;
+}
+nav a:hover { background: var(--gold); color: var(--dark); }
 
-.game-mode{display:none;font-weight:bold;}
-#gLogo{position:fixed;top:10px;right:10px;width:50px;height:50px;animation: rotate 4s linear infinite;cursor:pointer;}
-@keyframes rotate{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
+/* ── SECTION TITLES ── */
+section { padding: 10px 0 4px; }
+h2 {
+  font-family: 'Oswald', sans-serif;
+  font-size: 22px; font-weight: 700;
+  color: var(--gold);
+  padding: 12px 16px 6px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  border-left: 4px solid var(--gold);
+  margin: 18px 10px 8px;
+}
 
-/* Goal Light */
-#goalLight{position:fixed;top:10px;left:50%;width:20px;height:20px;background:#FFB612;border-radius:50%;opacity:0;transform:translateX(-50%);box-shadow:0 0 20px #FFB612;z-index:1001;transition:opacity 0.3s;}
+/* ── CARDS ── */
+.card {
+  background: var(--card);
+  border: 1px solid #2a4f45;
+  border-radius: 14px;
+  margin: 8px 12px;
+  padding: 16px;
+  color: white;
+}
+.card:hover { border-color: var(--gold); box-shadow: var(--glow); transition: 0.2s; }
+
+/* ── BUTTONS ── */
+.btn {
+  display: inline-block;
+  margin: 8px 6px;
+  padding: 12px 20px;
+  background: var(--gold);
+  color: var(--dark);
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  border: none;
+  font-family: 'Oswald', sans-serif;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: all 0.2s;
+}
+.btn:hover { background: white; transform: scale(1.04); box-shadow: var(--glow); }
+.btn-outline {
+  background: transparent; color: var(--gold);
+  border: 2px solid var(--gold);
+}
+.btn-outline:hover { background: var(--gold); color: var(--dark); }
+
+/* ── IFRAMES ── */
+iframe { width: 95%; height: 220px; border-radius: 12px; border: none; display: block; margin: 0 auto; }
+
+/* ── SCROLLING PHOTO GALLERY ── */
+.gallery-strip {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  padding: 10px 14px 16px;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: thin;
+  scrollbar-color: var(--gold) var(--card);
+}
+.gallery-strip::-webkit-scrollbar { height: 5px; }
+.gallery-strip::-webkit-scrollbar-track { background: var(--card); }
+.gallery-strip::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 4px; }
+.gallery-strip img {
+  height: 180px;
+  min-width: 260px;
+  max-width: 300px;
+  object-fit: cover;
+  border-radius: 12px;
+  scroll-snap-align: start;
+  border: 2px solid #2a4f45;
+  transition: transform 0.2s, border-color 0.2s;
+  cursor: pointer;
+}
+.gallery-strip img:hover { transform: scale(1.04); border-color: var(--gold); }
+
+/* ── FACTS GRID ── */
+.facts-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  padding: 0 12px;
+}
+.fact-item {
+  background: var(--card);
+  border: 1px solid #2a4f45;
+  border-radius: 10px;
+  padding: 12px;
+  font-size: 13px;
+  text-align: center;
+  transition: 0.2s;
+}
+.fact-item:hover { border-color: var(--gold); color: var(--gold); }
+
+/* ── PLAYER CARDS ── */
+.players-row {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  padding: 6px 14px 14px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--gold) var(--card);
+}
+.players-row::-webkit-scrollbar { height: 5px; }
+.players-row::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 4px; }
+.player-card {
+  min-width: 140px;
+  background: var(--card);
+  border: 1px solid #2a4f45;
+  border-radius: 14px;
+  padding: 12px;
+  text-align: center;
+  transition: 0.2s;
+}
+.player-card:hover { border-color: var(--gold); box-shadow: var(--glow); }
+.player-card img { width: 100%; height: 110px; object-fit: cover; border-radius: 10px; }
+.player-card strong { font-family: 'Oswald', sans-serif; font-size: 14px; color: var(--gold); }
+.player-card p { font-size: 11px; margin: 4px 0 0; color: #aed8c8; }
+
+/* ── TRIVIA QUIZ ── */
+.quiz-option {
+  display: block; width: 100%; margin: 8px 0;
+  padding: 12px 16px;
+  background: var(--card2);
+  border: 1px solid #2a4f45;
+  border-radius: 10px;
+  color: white;
+  text-align: left;
+  cursor: pointer;
+  font-size: 14px;
+  font-family: 'Inter', sans-serif;
+  transition: 0.2s;
+}
+.quiz-option:hover { border-color: var(--gold); }
+.quiz-option.correct { background: #1a4d2e; border-color: #4caf50; color: #81f59e; }
+.quiz-option.wrong { background: #4d1a1a; border-color: #f44336; color: #ff8a80; }
+#quiz-result { font-weight: 700; font-size: 16px; padding: 8px 0; min-height: 24px; }
+
+/* ── SOUNDBOARD ── */
+.soundboard-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 10px; padding: 0 12px;
+}
+.sound-btn {
+  padding: 16px 10px;
+  background: var(--card);
+  border: 1px solid #2a4f45;
+  border-radius: 12px;
+  color: var(--gold);
+  font-family: 'Oswald', sans-serif;
+  font-size: 15px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: 0.15s;
+  text-align: center;
+}
+.sound-btn:hover { background: var(--gold); color: var(--dark); transform: scale(1.04); }
+.sound-btn:active { transform: scale(0.97); }
+
+/* ── VOTE BAR ── */
+.vote-bar-wrap { margin: 8px 0; }
+.vote-label { display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 4px; }
+.vote-bar { height: 16px; background: #2a4f45; border-radius: 8px; overflow: hidden; }
+.vote-fill { height: 100%; background: var(--gold); border-radius: 8px; transition: width 0.6s ease; }
+
+/* ── PREDICTION TABLE ── */
+.pred-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.pred-table th { background: var(--gold); color: var(--dark); padding: 10px 8px; font-family: 'Oswald', sans-serif; letter-spacing: 1px; }
+.pred-table td { padding: 10px 8px; border-bottom: 1px solid #2a4f45; }
+.pred-table tr:nth-child(even) td { background: #1e3d35; }
+
+/* ── WALLPAPER GALLERY ── */
+.wallpaper-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  padding: 0 12px 12px;
+}
+.wallpaper-grid img {
+  width: 100%; border-radius: 10px; border: 2px solid #2a4f45;
+  cursor: pointer; transition: 0.2s;
+}
+.wallpaper-grid img:hover { border-color: var(--gold); transform: scale(1.03); }
+
+/* ── FLOATING EMOJIS ── */
+.floaty { position: fixed; top: -50px; font-size: 22px; animation: fall linear infinite; pointer-events: none; z-index: 0; }
+@keyframes fall { to { transform: translateY(110vh) rotate(360deg); } }
+
+/* ── GOAL LIGHT ── */
+#goalLight {
+  position: fixed; top: 10px; left: 50%;
+  width: 20px; height: 20px;
+  background: var(--gold); border-radius: 50%;
+  opacity: 0; transform: translateX(-50%);
+  box-shadow: 0 0 20px var(--gold); z-index: 1001; transition: opacity 0.3s;
+}
+
+/* ── G LOGO ── */
+#gLogo {
+  position: fixed; top: 12px; right: 12px;
+  width: 46px; height: 46px;
+  animation: rotate 5s linear infinite; cursor: pointer; z-index: 200;
+}
+@keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+/* ── DARK MODE BTN ── */
+#darkBtn {
+  position: fixed; top: 12px; left: 12px;
+  z-index: 200; padding: 8px 14px; font-size: 13px;
+}
+
+/* ── BIRTHDAY OVERLAY ── */
+#birthdayOverlay {
+  display: none; position: fixed; top:0; left:0; width:100%; height:100%;
+  background: rgba(0,0,0,0.88);
+  color: var(--gold);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 38px; letter-spacing: 3px;
+  text-align: center; padding-top: 20%;
+  z-index: 2000;
+}
+#birthdayOverlay p { font-size: 18px; font-family: 'Inter', sans-serif; letter-spacing: 1px; color: white; margin-top: 12px; }
+
+/* ── GAME MODE BANNER ── */
+#gameModeBanner {
+  display: none;
+  background: var(--gold); color: var(--dark);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 28px; letter-spacing: 3px;
+  text-align: center; padding: 14px;
+  animation: pulse 0.8s infinite alternate;
+}
+@keyframes pulse { from { opacity: 1; } to { opacity: 0.7; } }
+
+/* ── OL' PAL SURPRISE ── */
+#olPalMsg {
+  display: none;
+  background: linear-gradient(135deg, #2e5c4e, #1a3d30);
+  border: 2px solid var(--gold);
+  border-radius: 14px;
+  padding: 18px;
+  margin: 10px 12px;
+  font-size: 16px;
+  line-height: 1.7;
+  color: #c8f0e0;
+  box-shadow: var(--glow);
+}
+
+/* ── MOM MSG ── */
+.mom-msg {
+  background: linear-gradient(135deg, var(--card), #1a3028);
+  border-left: 4px solid var(--gold);
+  border-radius: 0 14px 14px 0;
+  padding: 20px;
+  margin: 10px 12px;
+  line-height: 1.8;
+  font-size: 15px;
+  color: #d4f0e8;
+}
+
+/* ── SCHEDULE ── */
+.game-item {
+  background: var(--card);
+  border: 1px solid #2a4f45;
+  border-radius: 12px;
+  padding: 14px;
+  margin: 8px 12px;
+}
+.game-item .countdown-chip {
+  display: inline-block;
+  background: var(--gold);
+  color: var(--dark);
+  font-weight: 700;
+  font-size: 12px;
+  padding: 3px 10px;
+  border-radius: 20px;
+  margin-top: 6px;
+}
+
+/* ── HALL OF FAME ── */
+.hof-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 10px; padding: 0 12px;
+}
+.hof-card {
+  background: var(--card);
+  border: 1px solid #2a4f45;
+  border-radius: 12px;
+  padding: 14px;
+  text-align: center;
+  font-family: 'Oswald', sans-serif;
+  letter-spacing: 1px;
+  font-size: 14px;
+  color: var(--gold);
+  transition: 0.2s;
+}
+.hof-card:hover { border-color: var(--gold); box-shadow: var(--glow); }
+.hof-card span { display: block; font-size: 28px; margin-bottom: 6px; }
+
+/* ── DID YOU KNOW ── */
+#dynFact {
+  background: linear-gradient(135deg, var(--card), #162e26);
+  border: 1px solid var(--gold);
+  border-radius: 14px;
+  padding: 18px;
+  margin: 8px 12px;
+  font-size: 15px;
+  line-height: 1.7;
+  min-height: 60px;
+}
 </style>
 </head>
 <body>
+
 <div id="lambeauBackground"></div>
-<div id="splash">💚 Welcome Jordan 🧀</div>
-<img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Green_Bay_Packers_logo.svg" id="gLogo" alt="Packers G Logo">
 
-<!-- Dark Mode -->
-<button class="button" style="position:fixed;top:10px;left:10px;z-index:1002;" onclick="toggleDarkMode()">🌙 Dark Mode</button>
+<!-- SPLASH -->
+<div id="splash">
+  💚 WELCOME JORDAN 🧀
+  <span>Green Bay Packers World</span>
+</div>
 
+<!-- FIXED ELEMENTS -->
+<img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Green_Bay_Packers_logo.svg" id="gLogo" alt="Packers G Logo" onclick="showBirthday()">
+<button class="btn" id="darkBtn" onclick="toggleDark()">🌙</button>
 <div id="goalLight"></div>
-<header>💚 Jordan’s Packers World 🧀</header>
-<div class="name">Game Time Ready 💚</div>
 
-<section>
-<h2>🏟️ Game Day</h2>
-<a class="button" href="https://www.nfl.com/ways-to-watch/" target="_blank">Official NFL Watch Options</a><br>
-<button class="button" onclick="activateGameMode()">🔥 Enter Game Day Mode</button>
-<div class="game-mode" id="gameMode">LET’S GO PACKERS!!! 🧀🏈💚</div>
-<button class="button" onclick="revealSurprise()">🎁 Secret Dad Message</button>
-<div id="surprise">Go Pack Go! Love Dad 💚🧀🏈</div>
-</section>
+<!-- HEADER -->
+<header>
+  <h1>💚 Jordan's Packers World 🧀</h1>
+  <div class="tagline">Green &amp; Gold — Forever Proud</div>
+</header>
 
-<section>
-<h2>📺 Live Packers Hub</h2>
-<!-- Auto-play iframe -->
-<iframe id="liveGameIframe" src="https://www.youtube.com/embed/?listType=user_uploads&list=NFL&autoplay=1&mute=1" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-<button class="button" onclick="unmuteLive()">🔊 Unmute Game</button>
-</section>
+<!-- NAV -->
+<nav>
+  <a href="#gameday">Game Day</a>
+  <a href="#photos">Photos</a>
+  <a href="#players">Legends</a>
+  <a href="#facts">Facts</a>
+  <a href="#quiz">Trivia</a>
+  <a href="#soundboard">Sounds</a>
+  <a href="#vote">Vote</a>
+  <a href="#schedule">Schedule</a>
+  <a href="#wallpapers">Wallpapers</a>
+  <a href="#hof">HOF</a>
+  <a href="#predictions">Picks</a>
+  <a href="#mom">Mom</a>
+</nav>
 
-<section>
-<h2>📊 Live NFL & Packers Scores</h2>
-<div class="live-scores-widget" style="width:95%; max-width:600px; margin:0 auto;">
-<iframe src="https://widget.espn.com/widgets/scores/nfl?teams=gb" width="100%" height="400" frameborder="0" scrolling="no"></iframe>
-<p style="font-size:12px; color:#FFB612;">Powered by ESPN Live Scores</p>
-</div>
-</section>
+<!-- GAME DAY MODE BANNER -->
+<div id="gameModeBanner">🔥 GAME DAY MODE — LET'S GO PACKERS!!! 🧀🏈</div>
 
-<section>
-<h2>🏆 Packers Facts</h2>
-<div class="fact">Founded in 1919 🏈</div>
-<div class="fact">Home: Lambeau Field 🏟️</div>
-<div class="fact">First Super Bowl Champions 🏆</div>
-<div class="fact">13 Championships (Most Ever)</div>
-<div class="fact">Fans = Cheeseheads 🧀</div>
-<div class="fact">Publicly Owned 👥</div>
-<div class="fact">Coach Vince Lombardi 👑</div>
-<div class="fact">Legends: Rodgers & Favre 🏈</div>
-<div class="fact">Frozen Tundra ❄️</div>
-<div class="fact">Green & Gold Forever 💚💛</div>
-</section>
-
-<section>
-<h2>👑 Legendary Players</h2>
-<div class="player-card">
-<img src="https://upload.wikimedia.org/wikipedia/commons/6/63/Aaron_Rodgers_2014.jpg" alt="Aaron Rodgers">
-<p><strong>Aaron Rodgers</strong></p>
-<p>QB • 3× MVP • Super Bowl XLV Champ</p>
-</div>
-<div class="player-card">
-<img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Brett_Favre_-_Packers_1999.jpg" alt="Brett Favre">
-<p><strong>Brett Favre</strong></p>
-<p>QB • Hall of Fame • Super Bowl XXXI Champ</p>
-</div>
-<div class="player-card">
-<img src="https://upload.wikimedia.org/wikipedia/commons/1/1c/Vince_Lombardi_1967.jpg" alt="Vince Lombardi">
-<p><strong>Vince Lombardi</strong></p>
-<p>Legendary Coach • Super Bowl Trophy Named After Him</p>
-</div>
-<div class="player-card">
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Jordan_Love_in_2021.jpg/330px-Jordan_Love_in_2021.jpg" alt="Top Rookie">
-<p><strong>Top Rookie</strong></p>
-<p>QB • Future Legend • Go Pack Go!</p>
-</div>
-</section>
-
-<section>
-<h2>📅 2026 Packers Schedule</h2>
-<div class="schedule">
-<div class="game">
-🏈 vs Chicago Bears (HOME)<br>
-🕒 <span class="countdown" id="countdown1"></span> • 📺 CBS • 🏟️ Lambeau Field<br>
-<button onclick="addToCalendar('2026-09-10T13:00','Packers vs Bears')">Add to Calendar</button>
-</div>
-<div class="game">
-🏈 at New Orleans Saints (AWAY)<br>
-🕒 <span class="countdown" id="countdown2"></span> • 📺 FOX • 🏟️ Caesars Superdome<br>
-<button onclick="addToCalendar('2026-09-17T16:25','Packers at Saints')">Add to Calendar</button>
-</div>
-</div>
-</section>
-
-<section>
-<h2>💬 Fan Quotes</h2>
-<div class="fanQuote" id="quote">“Go Pack Go! 🧀💚”</div>
-</section>
-
-<!-- Packers Gear Shop -->
-<section>
-<h2>🛒 Jordan’s Packers Gear Shop</h2>
-<div style="display:flex;flex-wrap:wrap;justify-content:center;">
-  <div class="player-card">
-    <img src="https://static.nfl.com/static/content/public/static/img/fantasy/2023/players/500x500/2323036.png" alt="Aaron Rodgers Jersey">
-    <p><strong>Aaron Rodgers Jersey</strong></p>
-    <a class="button" href="https://www.packers.com/shop" target="_blank">View / Buy</a>
+<!-- ══════════════════════════════════════════ -->
+<!-- 1. GAME DAY -->
+<!-- ══════════════════════════════════════════ -->
+<section id="gameday">
+  <h2>🏟️ Game Day</h2>
+  <div class="card">
+    <a class="btn" href="https://www.nfl.com/ways-to-watch/" target="_blank">📺 Watch NFL Live</a>
+    <button class="btn" onclick="activateGameMode()">🔥 Enter Game Day Mode</button>
+    <button class="btn btn-outline" onclick="revealOlPal()">🎁 Message from Your Ol' Pal</button>
+    <div id="olPalMsg">
+      Hey Jordan! 🧀💚<br><br>
+      Your ol' pal put this together just for you. A true Cheesehead through and through — 
+      the passion you have for the Pack is something special. Every Sunday when that Green &amp; Gold 
+      takes the field, just know I'm right there cheering with you, no matter what.<br><br>
+      <strong>Go Pack Go! 🏈💚🧀</strong>
+    </div>
   </div>
-  <div class="player-card">
-    <img src="https://cdn.shopify.com/s/files/1/0021/7324/9317/products/hoodie-green-gold.png" alt="Packers Hoodie">
-    <p><strong>Packers Hoodie</strong></p>
-    <a class="button" href="https://www.packers.com/shop" target="_blank">View / Buy</a>
-  </div>
-  <div class="player-card">
-    <img src="https://cdn.shopify.com/s/files/1/0021/7324/9317/products/cheesehead.png" alt="Cheesehead Hat">
-    <p><strong>Cheesehead Hat</strong></p>
-    <a class="button" href="https://www.packers.com/shop" target="_blank">View / Buy</a>
-  </div>
-  <div class="player-card">
-    <img src="https://cdn.shopify.com/s/files/1/0021/7324/9317/products/green-gold-socks.png" alt="Packers Socks">
-    <p><strong>Packers Socks</strong></p>
-    <a class="button" href="https://www.packers.com/shop" target="_blank">View / Buy</a>
-  </div>
-</div>
 </section>
 
+<!-- ══════════════════════════════════════════ -->
+<!-- 2. SCROLLING PHOTO GALLERY -->
+<!-- ══════════════════════════════════════════ -->
+<section id="photos">
+  <h2>📸 Packers Gallery</h2>
+  <div class="gallery-strip">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Lambeau_Field_panorama_2015.jpg" alt="Lambeau Field">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/63/Aaron_Rodgers_2014.jpg" alt="Aaron Rodgers">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Brett_Favre_-_Packers_1999.jpg" alt="Brett Favre">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/1/1c/Vince_Lombardi_1967.jpg" alt="Vince Lombardi">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Jordan_Love_in_2021.jpg/330px-Jordan_Love_in_2021.jpg" alt="Jordan Love">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Green_Bay_Packers_logo.svg" alt="Packers Logo" style="object-fit:contain; background:#203731;">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Lambeau_Field_panorama_2015.jpg" alt="Lambeau Night">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/63/Aaron_Rodgers_2014.jpg" alt="Rodgers Hype">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/1/1c/Vince_Lombardi_1967.jpg" alt="Lombardi">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Jordan_Love_in_2021.jpg/330px-Jordan_Love_in_2021.jpg" alt="Jordan Love 2">
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- 3. LIVE HUB -->
+<!-- ══════════════════════════════════════════ -->
+<section id="live">
+  <h2>📺 Live Packers Hub</h2>
+  <div class="card">
+    <iframe id="liveIframe" src="https://www.youtube.com/embed/?listType=user_uploads&list=NFL&autoplay=1&mute=1" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    <br>
+    <button class="btn" onclick="unmuteLive()">🔊 Unmute</button>
+    <a class="btn btn-outline" href="https://www.youtube.com/results?search_query=Packers+highlights+2025" target="_blank">🎬 Highlights</a>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- 4. SCORES -->
+<!-- ══════════════════════════════════════════ -->
 <section>
-<h2>💌 From Mom</h2>
-<p>
-Jordan 💚<br><br>
-This is your Packers world—your passion, your energy, your joy.<br>
-I built this just for you. Every time you open it, know I’m cheering with you.<br>
-Love you always 🧀🏈💚
-</p>
+  <h2>📊 Live NFL Scores</h2>
+  <div class="card">
+    <iframe src="https://widget.espn.com/widgets/scores/nfl?teams=gb" width="100%" height="350" frameborder="0" scrolling="no"></iframe>
+    <p style="font-size:11px; color:var(--gold); margin:6px 0 0; text-align:center;">Powered by ESPN</p>
+  </div>
 </section>
 
-<div id="birthdaySurprise" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.8);color:#FFB612;font-size:28px;text-align:center;padding-top:20%;z-index:1000;">
-🎉 Happy Birthday Jordan! 🧀🏈💚<br>Go Pack Go! Enjoy your special day!
+<!-- ══════════════════════════════════════════ -->
+<!-- 5. LEGENDARY PLAYERS -->
+<!-- ══════════════════════════════════════════ -->
+<section id="players">
+  <h2>👑 Legendary Players</h2>
+  <div class="players-row">
+    <div class="player-card">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/63/Aaron_Rodgers_2014.jpg" alt="Aaron Rodgers">
+      <strong>Aaron Rodgers</strong>
+      <p>QB • 3× MVP • SB XLV</p>
+    </div>
+    <div class="player-card">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Brett_Favre_-_Packers_1999.jpg" alt="Brett Favre">
+      <strong>Brett Favre</strong>
+      <p>QB • Hall of Fame • SB XXXI</p>
+    </div>
+    <div class="player-card">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/1/1c/Vince_Lombardi_1967.jpg" alt="Vince Lombardi">
+      <strong>Vince Lombardi</strong>
+      <p>Coach • Trophy Named For Him</p>
+    </div>
+    <div class="player-card">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Jordan_Love_in_2021.jpg/330px-Jordan_Love_in_2021.jpg" alt="Jordan Love">
+      <strong>Jordan Love</strong>
+      <p>QB • Future Legend 💚</p>
+    </div>
+    <div class="player-card">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Green_Bay_Packers_logo.svg" alt="Reggie White" style="object-fit:contain; background:#203731; padding:8px;">
+      <strong>Reggie White</strong>
+      <p>DE • Minister of Defense 🙏</p>
+    </div>
+    <div class="player-card">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Green_Bay_Packers_logo.svg" alt="Donald Driver" style="object-fit:contain; background:#203731; padding:8px;">
+      <strong>Donald Driver</strong>
+      <p>WR • All-Time Packers Leader</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- 6. PACKERS FACTS -->
+<!-- ══════════════════════════════════════════ -->
+<section id="facts">
+  <h2>🏆 Packers Facts</h2>
+  <div class="facts-grid">
+    <div class="fact-item">🏈 Founded 1919</div>
+    <div class="fact-item">🏟️ Home: Lambeau Field</div>
+    <div class="fact-item">🏆 1st Super Bowl Champs</div>
+    <div class="fact-item">13 Championships</div>
+    <div class="fact-item">🧀 Fans = Cheeseheads</div>
+    <div class="fact-item">👥 Publicly Owned Team</div>
+    <div class="fact-item">👑 Coach Lombardi Era</div>
+    <div class="fact-item">🌟 Rodgers &amp; Favre Legacy</div>
+    <div class="fact-item">❄️ Frozen Tundra</div>
+    <div class="fact-item">💚💛 Green &amp; Gold Forever</div>
+    <div class="fact-item">📍 Green Bay, Wisconsin</div>
+    <div class="fact-item">🥇 Most HOF Players in NFC</div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- 7. TRIVIA QUIZ ⭐ NEW -->
+<!-- ══════════════════════════════════════════ -->
+<section id="quiz">
+  <h2>🧠 Packers Trivia Quiz</h2>
+  <div class="card">
+    <div id="quizScore" style="font-family:'Oswald',sans-serif; font-size:18px; color:var(--gold); margin-bottom:10px;">Score: 0 / 0</div>
+    <div id="quizQuestion" style="font-size:15px; font-weight:600; margin-bottom:12px;"></div>
+    <div id="quizOptions"></div>
+    <div id="quiz-result"></div>
+    <button class="btn" id="nextQBtn" style="display:none;" onclick="nextQuestion()">Next Question ▶</button>
+    <button class="btn btn-outline" onclick="restartQuiz()">🔄 Restart</button>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- 8. PUMP-UP SOUNDBOARD ⭐ NEW -->
+<!-- ══════════════════════════════════════════ -->
+<section id="soundboard">
+  <h2>🔊 Pump-Up Soundboard</h2>
+  <div class="soundboard-grid">
+    <button class="sound-btn" onclick="playSound('crowd')">📣 Crowd Roar</button>
+    <button class="sound-btn" onclick="playSound('horn')">📯 Game Horn</button>
+    <button class="sound-btn" onclick="playSound('cheer')">🎉 Cheer!</button>
+    <button class="sound-btn" onclick="triggerGoPackGo()">💚 GO PACK GO!</button>
+    <button class="sound-btn" onclick="createBurst()">🧀 Cheese Rain</button>
+    <button class="sound-btn" onclick="goalPost()">🏆 TOUCHDOWN!</button>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- 9. FAVORITE PLAYER VOTE ⭐ NEW -->
+<!-- ══════════════════════════════════════════ -->
+<section id="vote">
+  <h2>🗳️ Fan Favorite Vote</h2>
+  <div class="card">
+    <p style="margin:0 0 10px; font-size:14px; color:#aed8c8;">Who's your all-time favorite Packer?</p>
+    <button class="btn" onclick="vote('rodgers')">Aaron Rodgers</button>
+    <button class="btn" onclick="vote('favre')">Brett Favre</button>
+    <button class="btn" onclick="vote('love')">Jordan Love</button>
+    <button class="btn" onclick="vote('lombardi')">Vince Lombardi</button>
+    <br>
+    <div id="voteResults" style="margin-top:14px; display:none;">
+      <div class="vote-bar-wrap"><div class="vote-label"><span>Aaron Rodgers</span><span id="vRodgers">0</span></div><div class="vote-bar"><div class="vote-fill" id="vbRodgers" style="width:0%"></div></div></div>
+      <div class="vote-bar-wrap"><div class="vote-label"><span>Brett Favre</span><span id="vFavre">0</span></div><div class="vote-bar"><div class="vote-fill" id="vbFavre" style="width:0%"></div></div></div>
+      <div class="vote-bar-wrap"><div class="vote-label"><span>Jordan Love</span><span id="vLove">0</span></div><div class="vote-bar"><div class="vote-fill" id="vbLove" style="width:0%"></div></div></div>
+      <div class="vote-bar-wrap"><div class="vote-label"><span>Vince Lombardi</span><span id="vLombardi">0</span></div><div class="vote-bar"><div class="vote-fill" id="vbLombardi" style="width:0%"></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- 10. DID YOU KNOW ⭐ NEW -->
+<!-- ══════════════════════════════════════════ -->
+<section>
+  <h2>💡 Did You Know?</h2>
+  <div id="dynFact">Loading a Packers fact...</div>
+  <div style="padding: 0 12px;">
+    <button class="btn btn-outline" onclick="rotateFact()">🔄 New Fact</button>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- 11. SCHEDULE -->
+<!-- ══════════════════════════════════════════ -->
+<section id="schedule">
+  <h2>📅 2026 Packers Schedule</h2>
+  <div class="game-item">
+    <strong>🏈 vs Chicago Bears (HOME)</strong><br>
+    <span style="font-size:12px; color:#aed8c8;">📺 CBS • 🏟️ Lambeau Field</span><br>
+    <span class="countdown-chip" id="countdown1">Loading...</span><br>
+    <button class="btn btn-outline" style="margin-top:8px; font-size:12px; padding:8px 14px;" onclick="addToCalendar('2026-09-10T13:00','Packers vs Bears')">📅 Add to Calendar</button>
+  </div>
+  <div class="game-item">
+    <strong>🏈 at New Orleans Saints (AWAY)</strong><br>
+    <span style="font-size:12px; color:#aed8c8;">📺 FOX • 🏟️ Caesars Superdome</span><br>
+    <span class="countdown-chip" id="countdown2">Loading...</span><br>
+    <button class="btn btn-outline" style="margin-top:8px; font-size:12px; padding:8px 14px;" onclick="addToCalendar('2026-09-17T16:25','Packers at Saints')">📅 Add to Calendar</button>
+  </div>
+  <div class="game-item">
+    <strong>🏈 vs Minnesota Vikings (HOME)</strong><br>
+    <span style="font-size:12px; color:#aed8c8;">📺 NBC • 🏟️ Lambeau Field — Sunday Night Football</span><br>
+    <span class="countdown-chip" id="countdown3">Loading...</span><br>
+    <button class="btn btn-outline" style="margin-top:8px; font-size:12px; padding:8px 14px;" onclick="addToCalendar('2026-10-04T20:20','Packers vs Vikings SNF')">📅 Add to Calendar</button>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- 12. WALLPAPERS ⭐ NEW -->
+<!-- ══════════════════════════════════════════ -->
+<section id="wallpapers">
+  <h2>🖼️ Packers Wallpapers</h2>
+  <div class="wallpaper-grid">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Lambeau_Field_panorama_2015.jpg" alt="Lambeau" onclick="openWallpaper(this.src)">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Green_Bay_Packers_logo.svg" alt="Logo" onclick="openWallpaper(this.src)" style="background:#203731; padding:10px;">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/63/Aaron_Rodgers_2014.jpg" alt="Rodgers" onclick="openWallpaper(this.src)">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Jordan_Love_in_2021.jpg/330px-Jordan_Love_in_2021.jpg" alt="Love" onclick="openWallpaper(this.src)">
+  </div>
+  <p style="font-size:11px; color:#aed8c8; padding:0 12px;">Tap any image to open full size &amp; save as wallpaper 📱</p>
+</section>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- 13. TOP PLAYS ⭐ NEW -->
+<!-- ══════════════════════════════════════════ -->
+<section>
+  <h2>🎬 Top Plays</h2>
+  <div class="card">
+    <p style="font-size:14px; margin:0 0 10px; color:#aed8c8;">Watch the best Packers moments ever!</p>
+    <a class="btn" href="https://www.youtube.com/results?search_query=Green+Bay+Packers+top+plays+all+time" target="_blank">🏈 All-Time Top Plays</a>
+    <a class="btn btn-outline" href="https://www.youtube.com/results?search_query=Jordan+Love+highlights+2025" target="_blank">💚 Jordan Love Highlights</a>
+    <a class="btn btn-outline" href="https://www.youtube.com/results?search_query=Aaron+Rodgers+best+moments+Packers" target="_blank">⭐ Rodgers Best Moments</a>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- 14. CHEESEHEAD HALL OF FAME ⭐ NEW -->
+<!-- ══════════════════════════════════════════ -->
+<section id="hof">
+  <h2>🏛️ Cheesehead Hall of Fame</h2>
+  <div class="hof-grid">
+    <div class="hof-card"><span>🧀</span>Brett Favre<br><small style="color:#aed8c8; font-family:'Inter';">Iron Man of Football</small></div>
+    <div class="hof-card"><span>⚡</span>Aaron Rodgers<br><small style="color:#aed8c8; font-family:'Inter';">The Discount Double-Check</small></div>
+    <div class="hof-card"><span>👑</span>Vince Lombardi<br><small style="color:#aed8c8; font-family:'Inter';">The Greatest Coach Ever</small></div>
+    <div class="hof-card"><span>🙏</span>Reggie White<br><small style="color:#aed8c8; font-family:'Inter';">Minister of Defense</small></div>
+    <div class="hof-card"><span>💨</span>Paul Hornung<br><small style="color:#aed8c8; font-family:'Inter';">The Golden Boy</small></div>
+    <div class="hof-card"><span>🎯</span>Don Hutson<br><small style="color:#aed8c8; font-family:'Inter';">The Alabama Antelope</small></div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- 15. JORDAN'S GAME PREDICTIONS ⭐ NEW -->
+<!-- ══════════════════════════════════════════ -->
+<section id="predictions">
+  <h2>🔮 Jordan's Game Predictions</h2>
+  <div class="card">
+    <p style="margin:0 0 10px; font-size:13px; color:#aed8c8;">Jordan's personal picks for the 2026 season 💚</p>
+    <table class="pred-table">
+      <thead><tr><th>Opponent</th><th>Jordan's Pick</th><th>Score</th></tr></thead>
+      <tbody>
+        <tr><td>vs Bears</td><td>💚 Packers Win</td><td>31 – 14</td></tr>
+        <tr><td>at Saints</td><td>💚 Packers Win</td><td>28 – 21</td></tr>
+        <tr><td>vs Vikings</td><td>💚 Packers Win</td><td>35 – 17</td></tr>
+        <tr><td>Playoffs</td><td>🏆 SUPER BOWL</td><td>GO PACK!</td></tr>
+      </tbody>
+    </table>
+    <button class="btn btn-outline" style="margin-top:12px;" onclick="shufflePrediction()">🎲 Random Bold Prediction</button>
+    <div id="boldPred" style="margin-top:10px; font-size:14px; color:var(--gold); min-height:20px;"></div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- 16. FAN QUOTES -->
+<!-- ══════════════════════════════════════════ -->
+<section>
+  <h2>💬 Fan Quotes</h2>
+  <div class="card" style="text-align:center; font-size:17px; font-family:'Oswald',sans-serif; letter-spacing:1px; padding:20px; color:var(--gold);" id="quoteDisplay">
+    "Go Pack Go! 🧀💚"
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- 17. GEAR SHOP -->
+<!-- ══════════════════════════════════════════ -->
+<section>
+  <h2>🛒 Jordan's Gear Shop</h2>
+  <div class="players-row">
+    <div class="player-card">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Green_Bay_Packers_logo.svg" alt="Jersey" style="object-fit:contain; background:#203731; padding:8px;">
+      <strong>Packers Jersey</strong>
+      <p><a class="btn" href="https://www.packers.com/shop" target="_blank" style="font-size:11px; padding:6px 10px;">Shop</a></p>
+    </div>
+    <div class="player-card">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Green_Bay_Packers_logo.svg" alt="Hoodie" style="object-fit:contain; background:#203731; padding:8px;">
+      <strong>Packers Hoodie</strong>
+      <p><a class="btn" href="https://www.packers.com/shop" target="_blank" style="font-size:11px; padding:6px 10px;">Shop</a></p>
+    </div>
+    <div class="player-card">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Green_Bay_Packers_logo.svg" alt="Cheesehead" style="object-fit:contain; background:#203731; padding:8px;">
+      <strong>Cheesehead Hat</strong>
+      <p><a class="btn" href="https://www.packers.com/shop" target="_blank" style="font-size:11px; padding:6px 10px;">Shop</a></p>
+    </div>
+    <div class="player-card">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Green_Bay_Packers_logo.svg" alt="Hat" style="object-fit:contain; background:#203731; padding:8px;">
+      <strong>Snapback Hat</strong>
+      <p><a class="btn" href="https://www.packers.com/shop" target="_blank" style="font-size:11px; padding:6px 10px;">Shop</a></p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- 18. FROM MOM -->
+<!-- ══════════════════════════════════════════ -->
+<section id="mom">
+  <h2>💌 From Mom</h2>
+  <div class="mom-msg">
+    Jordan 💚<br><br>
+    This is YOUR Packers world — your passion, your energy, your joy. 
+    Every time you open this, know that I'm right here cheering with you, every single game, 
+    every season, every Go Pack Go.<br><br>
+    You make every game day more fun just by being you.<br><br>
+    Love you always 🧀🏈💚
+  </div>
+</section>
+
+<!-- BIRTHDAY OVERLAY -->
+<div id="birthdayOverlay" onclick="this.style.display='none'">
+  🎉 HAPPY BIRTHDAY JORDAN! 🧀🏈
+  <p>Go Pack Go! Enjoy your special day!</p>
+  <p style="font-size:14px; color:#aed8c8;">(Tap to close)</p>
 </div>
 
-<audio id="crowdSound">
-<source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_5b0c7a4f62.mp3?filename=stadium-crowd-chant-6903.mp3" type="audio/mpeg">
-</audio>
-<audio id="hornSound">
-<source src="https://cdn.pixabay.com/download/audio/2022/03/27/audio_7eb18e2d41.mp3?filename=american-football-horn-11854.mp3" type="audio/mpeg">
-</audio>
+<!-- AUDIO -->
+<audio id="crowdAudio"><source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_5b0c7a4f62.mp3?filename=stadium-crowd-chant-6903.mp3" type="audio/mpeg"></audio>
+<audio id="hornAudio"><source src="https://cdn.pixabay.com/download/audio/2022/03/27/audio_7eb18e2d41.mp3?filename=american-football-horn-11854.mp3" type="audio/mpeg"></audio>
 
 <script>
-// Floating cheese & hats
-function createCheese(){const cheese=document.createElement("div");cheese.classList.add("cheese");cheese.innerHTML="🧀";cheese.style.left=Math.random()*100+"vw";cheese.style.animationDuration=(Math.random()*3+2)+"s";document.body.appendChild(cheese);setTimeout(()=>cheese.remove(),5000);}
-setInterval(createCheese,300);
-function createCheeseHat(){const hat=document.createElement("div");hat.classList.add("cheesehat");hat.innerHTML="🧀🎩";hat.style.left=Math.random()*100+"vw";hat.style.fontSize=(Math.random()*25+20)+"px";document.body.appendChild(hat);let fall=setInterval(()=>{hat.style.top=parseFloat(hat.style.top)+4+"px";if(parseFloat(hat.style.top)>window.innerHeight){hat.remove();clearInterval(fall);}},30);}
-setInterval(createCheeseHat,3000);
+// ── FLOATING CHEESE ──
+function makeFloat(emoji, size) {
+  const el = document.createElement('div');
+  el.classList.add('floaty');
+  el.innerHTML = emoji;
+  el.style.left = Math.random() * 100 + 'vw';
+  el.style.fontSize = (size || Math.random() * 20 + 16) + 'px';
+  el.style.animationDuration = (Math.random() * 3 + 2.5) + 's';
+  document.body.appendChild(el);
+  setTimeout(() => el.remove(), 6000);
+}
+setInterval(() => makeFloat('🧀'), 500);
+setInterval(() => makeFloat('🏈', 24), 2000);
 
-// Footballs, confetti, goal light
-function createFootball(){const ball=document.createElement("div");ball.classList.add("football");ball.innerHTML="🏈";ball.style.left=Math.random()*100+"vw";ball.style.fontSize=Math.random()*30+20+"px";document.body.appendChild(ball);let fall=setInterval(()=>{ball.style.top=parseFloat(ball.style.top)+5+"px";if(parseFloat(ball.style.top)>window.innerHeight){ball.remove();clearInterval(fall);}},30);}
-function createConfetti(){const confetti=document.createElement("div");confetti.classList.add("confetti");confetti.innerHTML="🎉";confetti.style.left=Math.random()*100+"vw";confetti.style.fontSize=(Math.random()*30+20)+"px";document.body.appendChild(confetti);let fall=setInterval(()=>{confetti.style.top=parseFloat(confetti.style.top)+5+"px";if(parseFloat(confetti.style.top)>window.innerHeight){confetti.remove();clearInterval(fall);}},30);}
-function flashGoalLight(){const light=document.getElementById("goalLight");light.style.opacity=1;setTimeout(()=>{light.style.opacity=0;},300);}
-function activateGameMode(){document.getElementById("gameMode").style.display="block";document.getElementById("crowdSound").play();setInterval(createFootball,500);setInterval(createConfetti,400);setInterval(flashGoalLight,800);setInterval(()=>{document.getElementById("hornSound").play()},5000);}
+// ── GAME DAY MODE ──
+function activateGameMode() {
+  document.getElementById('gameModeBanner').style.display = 'block';
+  playSound('crowd');
+  setInterval(() => makeFloat('🎉', 28), 300);
+  setInterval(() => makeFloat('🏈', 30), 500);
+  setInterval(() => { flashGoalLight(); }, 800);
+}
 
-// Dad surprise
-function revealSurprise(){document.getElementById("surprise").style.display="block";}
+function flashGoalLight() {
+  const l = document.getElementById('goalLight');
+  l.style.opacity = 1;
+  setTimeout(() => l.style.opacity = 0, 300);
+}
 
-// Birthday surprise
-function showBirthdaySurprise(){const surprise=document.getElementById("birthdaySurprise");surprise.style.display="block";for(let i=0;i<150;i++){const confetti=document.createElement("div");confetti.innerHTML="🎉";confetti.style.position="fixed";confetti.style.left=Math.random()*100+"vw";confetti.style.top="-10vh";confetti.style.fontSize=Math.random()*30+20+"px";confetti.style.zIndex="1001";document.body.appendChild(confetti);let fall=setInterval(()=>{confetti.style.top=parseFloat(confetti.style.top)+5+"px";if(parseFloat(confetti.style.top)>window.innerHeight){confetti.remove();clearInterval(fall);}},30);}surprise.onclick=()=>{surprise.style.display="none";};}
-document.getElementById("gLogo").addEventListener("click",showBirthdaySurprise);
+// ── OL' PAL MESSAGE ──
+function revealOlPal() {
+  const el = document.getElementById('olPalMsg');
+  el.style.display = el.style.display === 'block' ? 'none' : 'block';
+}
 
-// Countdown
-function countdown(id,targetDate){const el=document.getElementById(id);function update(){const now=new Date();const diff=new Date(targetDate)-now;if(diff<0){el.innerHTML="LIVE or Finished!";clearInterval(interval);return;}const days=Math.floor(diff/(1000*60*60*24));const hours=Math.floor((diff/(1000*60*60))%24);const minutes=Math.floor((diff/1000/60)%60);const seconds=Math.floor((diff/1000)%60);el.innerHTML=`${days}d ${hours}h ${minutes}m ${seconds}s`;}update();const interval=setInterval(update,1000);}
-countdown('countdown1','2026-09-10T13:00');countdown('countdown2','2026-09-17T16:25');
-
-// Add to Calendar
-function addToCalendar(dateTime,title){const start=new Date(dateTime).toISOString().replace(/-|:|\.\d+/g,'');const url=`https://www.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(title)}&dates=${start}/${start}&details=Packers Game!`;window.open(url,'_blank');}
-
-// Fan quotes rotation
-const quotes=["“Go Pack Go! 🧀💚”","“Cheeseheads forever! 🧀”","“Lambeau magic! 🏟️”","“Super Bowl dreams 🏆”"];
-let qIndex=0;setInterval(()=>{document.getElementById("quote").innerText=quotes[qIndex];qIndex=(qIndex+1)%quotes.length;},4000);
-
-// Dark Mode toggle
-let darkMode = false;
-function toggleDarkMode() {
-  darkMode = !darkMode;
-  if(darkMode){
-    document.body.style.background = "linear-gradient(to bottom, #0a1a0f 0%, #203731 100%)";
-    document.querySelectorAll('.fact, .schedule, .player-card, .fanQuote, .game-mode, #surprise, #birthdaySurprise').forEach(el => {el.style.background="#203731";el.style.color="#FFB612";});
-    document.body.style.color="#FFB612";
-  } else {
-    document.body.style.background = "linear-gradient(to bottom, #203731 0%, #FFB612 100%)";
-    document.querySelectorAll('.fact, .schedule, .player-card, .fanQuote, .game-mode, #surprise, #birthdaySurprise').forEach(el => {el.style.background="#2d4f47";el.style.color="white";});
-    document.body.style.color="white";
+// ── BIRTHDAY ──
+function showBirthday() {
+  document.getElementById('birthdayOverlay').style.display = 'block';
+  for (let i = 0; i < 120; i++) {
+    setTimeout(() => makeFloat('🎉', Math.random() * 30 + 20), i * 20);
   }
 }
 
-// Unmute Live Game
-function unmuteLive(){
-  const iframe = document.getElementById('liveGameIframe');
-  iframe.src = iframe.src.replace('&mute=1','&mute=0');
+// ── SOUNDS ──
+function playSound(type) {
+  if (type === 'crowd') { const a = document.getElementById('crowdAudio'); a.currentTime=0; a.play(); }
+  if (type === 'horn')  { const a = document.getElementById('hornAudio');  a.currentTime=0; a.play(); }
+  if (type === 'cheer') { const a = document.getElementById('crowdAudio'); a.currentTime=0; a.play(); makeFloat('🎊', 30); }
+}
+function triggerGoPackGo() {
+  for (let i = 0; i < 20; i++) setTimeout(() => makeFloat('💚', 28), i * 80);
+  flashGoalLight();
+}
+function createBurst() {
+  for (let i = 0; i < 30; i++) setTimeout(() => makeFloat('🧀', Math.random()*25+18), i * 60);
+}
+function goalPost() {
+  playSound('horn');
+  for (let i = 0; i < 25; i++) setTimeout(() => makeFloat('🏆', 30), i * 70);
+  flashGoalLight();
+}
+
+// ── UNMUTE ──
+function unmuteLive() {
+  const f = document.getElementById('liveIframe');
+  f.src = f.src.replace('&mute=1','&mute=0');
+}
+
+// ── COUNTDOWN ──
+function countdown(id, target) {
+  const el = document.getElementById(id);
+  function update() {
+    const diff = new Date(target) - new Date();
+    if (diff < 0) { el.innerHTML = 'LIVE or Finished!'; return; }
+    const d = Math.floor(diff/86400000);
+    const h = Math.floor((diff/3600000)%24);
+    const m = Math.floor((diff/60000)%60);
+    const s = Math.floor((diff/1000)%60);
+    el.innerHTML = `${d}d ${h}h ${m}m ${s}s`;
+  }
+  update(); setInterval(update, 1000);
+}
+countdown('countdown1','2026-09-10T13:00');
+countdown('countdown2','2026-09-17T16:25');
+countdown('countdown3','2026-10-04T20:20');
+
+// ── CALENDAR ──
+function addToCalendar(dt, title) {
+  const s = new Date(dt).toISOString().replace(/-|:|\.\d+/g,'');
+  window.open(`https://www.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(title)}&dates=${s}/${s}&details=Packers+Game!`, '_blank');
+}
+
+// ── FAN QUOTES ──
+const quotes = [
+  '"Go Pack Go! 🧀💚"',
+  '"Cheeseheads forever! 🧀"',
+  '"Lambeau magic! 🏟️"',
+  '"Super Bowl dreams 🏆"',
+  '"Green & Gold till I die! 💚💛"',
+  '"Jordan Love is the future! 🔥"',
+  '"Nobody circles the wagons like the Buffalo Bills… but we beat them anyway 😂"',
+  '"Frozen Tundra = Sacred Ground ❄️"'
+];
+let qIdx = 0;
+setInterval(() => {
+  qIdx = (qIdx + 1) % quotes.length;
+  document.getElementById('quoteDisplay').innerText = quotes[qIdx];
+}, 4000);
+
+// ── DARK MODE ──
+let dark = false;
+function toggleDark() {
+  dark = !dark;
+  document.body.style.background = dark ? '#060f0c' : '';
+  document.getElementById('darkBtn').textContent = dark ? '☀️' : '🌙';
+}
+
+// ── DID YOU KNOW ──
+const dynFacts = [
+  "The Green Bay Packers are the ONLY publicly-owned, non-profit major professional sports team in the US 🏈",
+  "Lambeau Field has been sold out every single game since 1960 — the waiting list for season tickets is over 100,000 people! 😲",
+  "Vince Lombardi never had a losing season in his entire NFL coaching career 👑",
+  "Brett Favre played in 297 consecutive regular season games — an NFL record for a quarterback ⚡",
+  "The Packers have won more NFL championships (13) than any other team in history 🏆",
+  "Green Bay is the smallest market city to have an NFL franchise — population ~107,000 🧀",
+  "The Ice Bowl in 1967 was played at -13°F (-25°C) at Lambeau Field. Packers won! ❄️",
+  "Aaron Rodgers once threw 402 consecutive passes without an interception 🎯",
+  "The Lombardi Trophy given to every Super Bowl winner is named after Packers coach Vince Lombardi 🏆",
+  "Jordan Love was the 26th pick in the 2020 NFL Draft, and took over as starter in 2023 💚",
+];
+let factIdx = 0;
+function rotateFact() {
+  factIdx = (factIdx + 1) % dynFacts.length;
+  document.getElementById('dynFact').innerHTML = dynFacts[factIdx];
+}
+document.getElementById('dynFact').innerHTML = dynFacts[0];
+
+// ── TRIVIA QUIZ ──
+const trivia = [
+  { q: "In what year were the Green Bay Packers founded?", opts: ["1919","1925","1931","1908"], ans: 0 },
+  { q: "Who is the Packers' all-time leader in passing touchdowns?", opts: ["Brett Favre","Aaron Rodgers","Bart Starr","Jordan Love"], ans: 1 },
+  { q: "What is the name of the Packers' home stadium?", opts: ["Camp Randall","US Bank Stadium","Lambeau Field","Arrowhead"], ans: 2 },
+  { q: "How many NFL Championships have the Packers won?", opts: ["9","11","13","15"], ans: 2 },
+  { q: "Which coach led the Packers to their first two Super Bowl wins?", opts: ["Mike McCarthy","Ron Wolf","Vince Lombardi","Mike Holmgren"], ans: 2 },
+  { q: "What year did the Packers win Super Bowl XLV?", opts: ["2009","2010","2011","2012"], ans: 2 },
+  { q: "What number did Brett Favre wear?", opts: ["4","7","12","16"], ans: 0 },
+  { q: "What is the nickname of Lambeau Field in cold weather games?", opts: ["The Ice House","Frozen Tundra","Arctic Arena","Green Glacier"], ans: 1 },
+];
+let tIdx = 0, tScore = 0, tTotal = 0;
+function loadQuestion() {
+  const q = trivia[tIdx];
+  document.getElementById('quizQuestion').textContent = `Q${tIdx+1}: ${q.q}`;
+  const opts = document.getElementById('quizOptions');
+  opts.innerHTML = '';
+  document.getElementById('quiz-result').textContent = '';
+  document.getElementById('nextQBtn').style.display = 'none';
+  q.opts.forEach((opt, i) => {
+    const b = document.createElement('button');
+    b.className = 'quiz-option';
+    b.textContent = opt;
+    b.onclick = () => checkAnswer(i);
+    opts.appendChild(b);
+  });
+}
+function checkAnswer(picked) {
+  tTotal++;
+  const q = trivia[tIdx];
+  const btns = document.querySelectorAll('.quiz-option');
+  btns.forEach((b, i) => {
+    b.onclick = null;
+    if (i === q.ans) b.classList.add('correct');
+    else if (i === picked) b.classList.add('wrong');
+  });
+  if (picked === q.ans) {
+    tScore++;
+    document.getElementById('quiz-result').innerHTML = '✅ Correct! Go Pack Go!';
+    makeFloat('🏆', 30);
+  } else {
+    document.getElementById('quiz-result').innerHTML = `❌ The answer was: <strong>${q.opts[q.ans]}</strong>`;
+  }
+  document.getElementById('quizScore').textContent = `Score: ${tScore} / ${tTotal}`;
+  document.getElementById('nextQBtn').style.display = tIdx < trivia.length - 1 ? 'inline-block' : 'none';
+}
+function nextQuestion() { tIdx++; loadQuestion(); }
+function restartQuiz() { tIdx = 0; tScore = 0; tTotal = 0; document.getElementById('quizScore').textContent = 'Score: 0 / 0'; loadQuestion(); }
+loadQuestion();
+
+// ── VOTE ──
+const votes = { rodgers: 0, favre: 0, love: 0, lombardi: 0 };
+function vote(player) {
+  votes[player]++;
+  document.getElementById('voteResults').style.display = 'block';
+  const total = Object.values(votes).reduce((a,b) => a+b, 0);
+  ['rodgers','favre','love','lombardi'].forEach(p => {
+    const pct = total ? Math.round(votes[p] / total * 100) : 0;
+    document.getElementById('v' + p.charAt(0).toUpperCase() + p.slice(1)).textContent = `${votes[p]} (${pct}%)`;
+    document.getElementById('vb' + p.charAt(0).toUpperCase() + p.slice(1)).style.width = pct + '%';
+  });
+}
+
+// ── WALLPAPER ──
+function openWallpaper(src) { window.open(src, '_blank'); }
+
+// ── BOLD PREDICTION ──
+const boldPreds = [
+  "💚 Jordan Love throws 42 TDs in 2026 — new Packers record!",
+  "🧀 Packers go 14-3 and win the NFC North!",
+  "🏆 Green Bay wins Super Bowl LXI by 14 points!",
+  "🔥 Lambeau sellout crowd witnesses the greatest comeback in NFL history!",
+  "⭐ Jordan Love wins MVP and Jordan watches from the front row!",
+  "🚀 Packers score 50+ points in the NFC Championship game!",
+];
+function shufflePrediction() {
+  const p = boldPreds[Math.floor(Math.random() * boldPreds.length)];
+  document.getElementById('boldPred').textContent = p;
 }
 </script>
 </body>
