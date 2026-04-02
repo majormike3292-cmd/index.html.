@@ -56,7 +56,7 @@ iframe{width:95%;height:220px;border-radius:12px;}
 
 <section>
 <h2>🏟️ Game Day</h2>
-<a class="button" href="https://www.nfl.com/ways-to-watch/" target="_blank">Watch Live Game</a><br>
+<a class="button" href="https://www.nfl.com/ways-to-watch/" target="_blank">Official NFL Watch Options</a><br>
 <button class="button" onclick="activateGameMode()">🔥 Enter Game Day Mode</button>
 <div class="game-mode" id="gameMode">LET’S GO PACKERS!!! 🧀🏈💚</div>
 <button class="button" onclick="revealSurprise()">🎁 Secret Dad Message</button>
@@ -65,8 +65,9 @@ iframe{width:95%;height:220px;border-radius:12px;}
 
 <section>
 <h2>📺 Live Packers Hub</h2>
-<a class="button" href="https://www.nfl.com/watch/" target="_blank">Watch Live / Highlights</a><br><br>
-<iframe src="https://www.youtube.com/embed/?listType=user_uploads&list=NFL" allowfullscreen></iframe>
+<!-- Auto-play iframe -->
+<iframe id="liveGameIframe" src="https://www.youtube.com/embed/?listType=user_uploads&list=NFL&autoplay=1&mute=1" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<button class="button" onclick="unmuteLive()">🔊 Unmute Game</button>
 </section>
 
 <section>
@@ -164,7 +165,7 @@ iframe{width:95%;height:220px;border-radius:12px;}
 </section>
 
 <section>
-<h2>💌 From Dad</h2>
+<h2>💌 From Mom</h2>
 <p>
 Jordan 💚<br><br>
 This is your Packers world—your passion, your energy, your joy.<br>
@@ -228,6 +229,12 @@ function toggleDarkMode() {
     document.querySelectorAll('.fact, .schedule, .player-card, .fanQuote, .game-mode, #surprise, #birthdaySurprise').forEach(el => {el.style.background="#2d4f47";el.style.color="white";});
     document.body.style.color="white";
   }
+}
+
+// Unmute Live Game
+function unmuteLive(){
+  const iframe = document.getElementById('liveGameIframe');
+  iframe.src = iframe.src.replace('&mute=1','&mute=0');
 }
 </script>
 </body>
