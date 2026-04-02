@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Packers World 💚</title>
+<title>Jordan’s Packers World 💚</title>
 
 <style>
 body {
@@ -18,9 +18,21 @@ body {
 header {
     background:#FFB612;
     padding:20px;
-    font-size:24px;
+    font-size:26px;
     font-weight:bold;
     color:#203731;
+}
+
+/* Name Animation */
+.name {
+    font-size:30px;
+    margin-top:15px;
+    animation: glow 2s infinite alternate;
+}
+
+@keyframes glow {
+    from { text-shadow:0 0 5px #fff; }
+    to { text-shadow:0 0 20px #FFB612; }
 }
 
 /* Section */
@@ -32,7 +44,7 @@ section {
 .button {
     display:inline-block;
     margin:10px;
-    padding:12px 20px;
+    padding:14px 22px;
     background:#FFB612;
     color:#203731;
     border-radius:10px;
@@ -55,7 +67,7 @@ iframe {
     border-radius:10px;
 }
 
-/* Cheese animation */
+/* Cheese */
 .cheese {
     position:fixed;
     top:-50px;
@@ -66,20 +78,45 @@ iframe {
 @keyframes fall {
     to { transform: translateY(110vh); }
 }
+
+/* Game Mode */
+.game-mode {
+    background:#FFB612;
+    color:#203731;
+    padding:15px;
+    margin-top:20px;
+    border-radius:10px;
+    display:none;
+    font-weight:bold;
+}
 </style>
 </head>
 
 <body>
 
 <header>
-💚 My Packers App 🧀
+💚 Jordan’s Packers World 🧀
 </header>
 
+<div class="name">
+Welcome Jordan 💚
+</div>
+
 <section>
-<h2>🏟️ Watch Live</h2>
+<h2>🏟️ Game Day</h2>
 <a class="button" href="https://www.nfl.com/ways-to-watch/" target="_blank">
-Watch Game
+Watch Live Game
 </a>
+
+<br>
+
+<button class="button" onclick="activateGameMode()">
+🔥 Enter Game Day Mode
+</button>
+
+<div class="game-mode" id="gameMode">
+LET’S GO PACKERS!!! 🧀🏈💚
+</div>
 </section>
 
 <section>
@@ -91,25 +128,28 @@ Watch Game
 <h2>🏆 Packers Facts</h2>
 
 <div class="fact">Founded in 1919 🏈</div>
-<div class="fact">Play at Lambeau Field 🏟️</div>
-<div class="fact">Won the first Super Bowl 🏆</div>
-<div class="fact">13 championships (most ever)</div>
+<div class="fact">Home: Lambeau Field 🏟️</div>
+<div class="fact">First Super Bowl Champions 🏆</div>
+<div class="fact">13 Championships (Most Ever)</div>
 <div class="fact">Fans = Cheeseheads 🧀</div>
-<div class="fact">Publicly owned team 👥</div>
-<div class="fact">Legendary coach Vince Lombardi 👑</div>
-<div class="fact">Favre & Rodgers legends 🏈</div>
+<div class="fact">Publicly Owned 👥</div>
+<div class="fact">Coach Vince Lombardi 👑</div>
+<div class="fact">Legends: Rodgers & Favre 🏈</div>
 <div class="fact">Frozen Tundra ❄️</div>
-<div class="fact">Small town, BIG legacy 💚</div>
+<div class="fact">Green & Gold Forever 💚💛</div>
 
 </section>
 
 <section>
-<h2>💌 Message</h2>
+<h2>💌 From Dad</h2>
 <p>
-To my daughter 💚  
-Your love for the Packers is something special.  
-Every game, every cheer — I see your passion and it makes me proud.  
-This is your world 🧀🏈
+Jordan 💚<br><br>
+Watching how much you love the Packers is something special to me.  
+It’s more than just a team — it’s your passion, your energy, your joy.  
+And being able to build this for you… that means everything.  
+No matter what, I’ll always be right here cheering with you.  
+<br><br>
+Love you always 🧀🏈💚
 </p>
 </section>
 
@@ -128,6 +168,10 @@ function createCheese() {
 }
 
 setInterval(createCheese, 300);
+
+function activateGameMode() {
+    document.getElementById("gameMode").style.display = "block";
+}
 </script>
 
 </body>
