@@ -14,6 +14,25 @@ body {
     text-align:center;
 }
 
+/* Splash Screen */
+#splash {
+    position:fixed;
+    width:100%;
+    height:100%;
+    background:#203731;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:30px;
+    z-index:999;
+    animation: fadeOut 2s forwards;
+    animation-delay:2s;
+}
+
+@keyframes fadeOut {
+    to { opacity:0; visibility:hidden; }
+}
+
 /* Header */
 header {
     background:#FFB612;
@@ -23,9 +42,9 @@ header {
     color:#203731;
 }
 
-/* Name Animation */
+/* Name Glow */
 .name {
-    font-size:30px;
+    font-size:28px;
     margin-top:15px;
     animation: glow 2s infinite alternate;
 }
@@ -33,11 +52,6 @@ header {
 @keyframes glow {
     from { text-shadow:0 0 5px #fff; }
     to { text-shadow:0 0 20px #FFB612; }
-}
-
-/* Section */
-section {
-    padding:20px;
 }
 
 /* Buttons */
@@ -67,7 +81,7 @@ iframe {
     border-radius:10px;
 }
 
-/* Cheese */
+/* Cheese Animation */
 .cheese {
     position:fixed;
     top:-50px;
@@ -94,16 +108,22 @@ iframe {
 
 <body>
 
+<!-- Splash -->
+<div id="splash">
+💚 Welcome Jordan 🧀
+</div>
+
 <header>
 💚 Jordan’s Packers World 🧀
 </header>
 
 <div class="name">
-Welcome Jordan 💚
+Game Time Ready 💚
 </div>
 
 <section>
 <h2>🏟️ Game Day</h2>
+
 <a class="button" href="https://www.nfl.com/ways-to-watch/" target="_blank">
 Watch Live Game
 </a>
@@ -117,6 +137,7 @@ Watch Live Game
 <div class="game-mode" id="gameMode">
 LET’S GO PACKERS!!! 🧀🏈💚
 </div>
+
 </section>
 
 <section>
@@ -144,14 +165,18 @@ LET’S GO PACKERS!!! 🧀🏈💚
 <h2>💌 From Dad</h2>
 <p>
 Jordan 💚<br><br>
-Watching how much you love the Packers is something special to me.  
-It’s more than just a team — it’s your passion, your energy, your joy.  
-And being able to build this for you… that means everything.  
-No matter what, I’ll always be right here cheering with you.  
+This isn’t just a website… this is something I made just for you.  
+Every time you open it, I want you to feel how much you’re loved.  
+And no matter where life takes you, I’ll always be right here cheering with you.  
 <br><br>
 Love you always 🧀🏈💚
 </p>
 </section>
+
+<!-- Crowd Sound -->
+<audio id="crowdSound">
+<source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_5b0c7a4f62.mp3?filename=stadium-crowd-chant-6903.mp3" type="audio/mpeg">
+</audio>
 
 <script>
 function createCheese() {
@@ -171,6 +196,7 @@ setInterval(createCheese, 300);
 
 function activateGameMode() {
     document.getElementById("gameMode").style.display = "block";
+    document.getElementById("crowdSound").play();
 }
 </script>
 
